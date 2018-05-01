@@ -17,6 +17,10 @@ const mount = require('koa-mount');
 // const videoAnalisys = require('./controller/video-analisys');
 
 // const wss = new WebSocket.Server({ port: 8080 });
+
+const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
+const ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
 const app = new koa();
 
 // error handling
@@ -89,6 +93,6 @@ var config = {
 //   console.error('Failed to start HTTPS server\n', ex, ex && ex.stack);
 // }
 
-app.listen(8080, () => {
+app.listen(port, () => {
   console.log('API listening on port 8080');
 });
