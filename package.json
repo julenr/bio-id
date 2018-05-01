@@ -1,0 +1,34 @@
+{
+  "name": "bio-id",
+  "version": "1.0.0",
+  "description": "Biometric identification backend",
+  "main": "./app.js",
+  "scripts": {
+    "start": "node ./src/api/app.js",
+    "start:ws": "node ./src/api/app.js & node ./src/ws/index.js",
+    "ncu": "ncu -l verbose",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "dependencies": {
+    "fluent-ffmpeg": "2.1.2",
+    "fs-extra": "5.0.0",
+    "koa": "2.5.0",
+    "koa-bodyparser": "4.2.0",
+    "koa-convert": "1.2.0",
+    "koa-handle-error": "0.0.5",
+    "koa-json-error": "3.1.2",
+    "koa-logger": "3.2.0",
+    "koa-mount": "3.0.0",
+    "koa-res": "3.1.0",
+    "koa-simple-router": "0.2.0",
+    "koa-static": "4.0.2",
+    "koa2-cors": "2.0.5",
+    "native-node-utils": "0.1.2",
+    "node-json-db": "0.7.5",
+    "ws": "5.1.1"
+  },
+  "devDependencies": {
+    "npm-check-updates": "^2.14.1"
+  }
+}
