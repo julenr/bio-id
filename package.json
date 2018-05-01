@@ -4,7 +4,7 @@
   "description": "Biometric identification backend",
   "main": "./app.js",
   "scripts": {
-    "start": "node ./src/api/app.js",
+    "start": "node ./app.js",
     "start:ws": "node ./src/api/app.js & node ./src/ws/index.js",
     "ncu": "ncu -l verbose",
     "test": "echo \"Error: no test specified\" && exit 1"
