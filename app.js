@@ -60,39 +60,31 @@ app.use(
 //   });
 // });
 
-// var config = {
-//   domain: 'biodetection.com',
-//   http: {
-//     port: 8989,
-//   },
-//   https: {
-//     port: 443,
-//     options: {
-//       key: fs
-//         .readFileSync(path.resolve(process.cwd(), 'certs/server.key'), 'utf8')
-//         .toString(),
-//       cert: fs
-//         .readFileSync(path.resolve(process.cwd(), 'certs/server.crt'), 'utf8')
-//         .toString(),
-//     },
-//   },
-// };
+var config = {
+  domain: 'openshiftapps.com',
+  http: {
+    port: 8080,
+  },
+  https: {
+    port: 443,
+  },
+};
 
-// try {
-//   const httpsServer = https.createServer(config.https.options, app.callback());
-//   httpsServer.listen(config.https.port, function(err) {
-//     if (!!err) {
-//       console.error('HTTPS server FAIL: ', err, err && err.stack);
-//     } else {
-//       console.log(
-//         `HTTPS server OK: http://${config.domain}:${config.https.port}`
-//       );
-//     }
-//   });
-// } catch (ex) {
-//   console.error('Failed to start HTTPS server\n', ex, ex && ex.stack);
-// }
+try {
+  const httpsServer = https.createServer(config.https.options, app.callback());
+  httpsServer.listen(config.https.port, function(err) {
+    if (!!err) {
+      console.error('HTTPS server FAIL: ', err, err && err.stack);
+    } else {
+      console.log(
+        `HTTPS server OK: http://${config.domain}:${config.https.port}`
+      );
+    }
+  });
+} catch (ex) {
+  console.error('Failed to start HTTPS server\n', ex, ex && ex.stack);
+}
 
-app.listen(port, () => {
-  console.log('API listening on port 8080');
-});
+// app.listen(port, () => {
+//   console.log('API listening on port 8080');
+// });
