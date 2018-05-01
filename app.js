@@ -60,23 +60,23 @@ app.use(
 //   });
 // });
 
-var config = {
-  domain: 'biodetection.com',
-  http: {
-    port: 8989,
-  },
-  https: {
-    port: 443,
-    options: {
-      key: fs
-        .readFileSync(path.resolve(process.cwd(), 'certs/server.key'), 'utf8')
-        .toString(),
-      cert: fs
-        .readFileSync(path.resolve(process.cwd(), 'certs/server.crt'), 'utf8')
-        .toString(),
-    },
-  },
-};
+// var config = {
+//   domain: 'biodetection.com',
+//   http: {
+//     port: 8989,
+//   },
+//   https: {
+//     port: 443,
+//     options: {
+//       key: fs
+//         .readFileSync(path.resolve(process.cwd(), 'certs/server.key'), 'utf8')
+//         .toString(),
+//       cert: fs
+//         .readFileSync(path.resolve(process.cwd(), 'certs/server.crt'), 'utf8')
+//         .toString(),
+//     },
+//   },
+// };
 
 // try {
 //   const httpsServer = https.createServer(config.https.options, app.callback());
