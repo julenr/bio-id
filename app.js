@@ -11,12 +11,12 @@ const koaRes = require('koa-res');
 const handleError = require('koa-handle-error');
 const serve = require('koa-static');
 const mount = require('koa-mount');
-// const WebSocket = require('ws');
+const WebSocket = require('ws');
 
 const task = require('./controller/task');
 const videoAnalisys = require('./controller/video-analisys');
 
-// const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ port: 8080 });
 
 const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 const ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
@@ -58,12 +58,12 @@ app.use(
   })
 );
 
-// wss.on('connection', ws => {
-//   console.log('WS Connected on port: 8080');
-//   ws.on('message', function incoming(message) {
-//     console.log('received: %s', message);
-//   });
-// });
+wss.on('connection', ws => {
+  console.log('WS Connected on port: 8080');
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
+});
 
 // var config = {
 //   domain: 'openshiftapps.com',
