@@ -54,7 +54,12 @@ app.use(
       _.post(
         '/api/v1/biometric-id/save-video',
         videoAnalisys.saveVideoData(wss)
-      );
+      ),
+      _.get('*', async (ctx, next) => {
+        const html = fs.readFileSync(path.resolve('./public/index.html'));
+        ctx.type = 'html';
+        ctx.body = html;
+      });
   })
 );
 
