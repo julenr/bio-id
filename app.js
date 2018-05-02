@@ -54,10 +54,9 @@ app.use(
       _.post(
         '/api/v1/biometric-id/save-video',
         videoAnalisys.saveVideoData(wss)
-      ),
+      );
   })
 );
-
 
 // wss.on('connection', ws => {
 //   console.log('WS Connected on port: 8080');
