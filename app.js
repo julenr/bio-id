@@ -16,7 +16,7 @@ const WebSocket = require('ws');
 const task = require('./controller/task');
 const videoAnalisys = require('./controller/video-analisys');
 
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ port: 8082 });
 
 const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 const ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
@@ -59,7 +59,7 @@ app.use(
 );
 
 wss.on('connection', ws => {
-  console.log('WS Connected on port: 8080');
+  console.log('WS Connected on port: 8082');
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
   });
