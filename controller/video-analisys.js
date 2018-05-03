@@ -12,27 +12,27 @@ exports.getSessions = ctx => {
   ctx.body = { sessions };
 };
 
-exports.saveVideoData = wss => ctx => {
+exports.saveVideoData = ctx => {
   const { sessionId, stepNumber, videoData, videoOptions } = ctx.request.body;
   if (isVideo(videoData)) {
     saveVideo(videoData, sessionId, stepNumber, videoOptions);
     saveVideoDataToDb(sessionId, stepNumber, videoOptions, 'webm');
-    broadcast(wss);
+    // broadcast(wss);
   } else {
     encodeAndSaveVideo(videoData, sessionId, stepNumber, videoOptions);
     saveVideoDataToDb(sessionId, stepNumber, videoOptions, 'mp4');
-    broadcast(wss);
+    // broadcast(wss);
   }
   ctx.body = { message: 'success!' };
 };
 
-function broadcast(wss) {
-  wss.clients.forEach(function each(client) {
-    // if (client.readyState === WebSocket.OPEN) {
-    client.send('newVideo');
-    // }
-  });
-}
+// function broadcast(wss) {
+//   wss.clients.forEach(function each(client) {
+//     // if (client.readyState === WebSocket.OPEN) {
+//     client.send('newVideo');
+//     // }
+//   });
+// }
 
 function isVideo(data) {
   // if is a string then must be a video
@@ -51,6 +51,7 @@ function saveVideo(videoData, sessionId, step) {
 }
 
 function encodeAndSaveVideo(videoData, sessionId, step, videoOptions) {
+  console.log('ffmpeg', ffmpeg);
   const regx = RegExp(`^data:image\/${videoOptions.imageType};base64,`);
   videoData.forEach((frame, idx) => {
     const base64Frame = frame.replace(regx, '');

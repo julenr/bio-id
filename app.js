@@ -11,12 +11,12 @@ const koaRes = require('koa-res');
 const handleError = require('koa-handle-error');
 const serve = require('koa-static');
 const mount = require('koa-mount');
-const WebSocket = require('ws');
+// const WebSocket = require('ws');
 
 const task = require('./controller/task');
 const videoAnalisys = require('./controller/video-analisys');
 
-const wss = new WebSocket.Server({ port: 8082 });
+// const wss = new WebSocket.Server({ port: 8082 });
 
 const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 const ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
@@ -51,10 +51,7 @@ app.use(
         throw new Error('Aghh! An error!');
       }),
       _.get('/api/v1/biometric-id/sessions.json', videoAnalisys.getSessions),
-      _.post(
-        '/api/v1/biometric-id/save-video',
-        videoAnalisys.saveVideoData(wss)
-      ),
+      _.post('/api/v1/biometric-id/save-video', videoAnalisys.saveVideoData,
       _.get('*', async (ctx, next) => {
         const html = fs.readFileSync(path.resolve('./public/index.html'));
         ctx.type = 'html';
@@ -63,12 +60,12 @@ app.use(
   })
 );
 
-wss.on('connection', ws => {
-  console.log('WS Connected on port: 8082');
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-  });
-});
+// wss.on('connection', ws => {
+//   console.log('WS Connected on port: 8082');
+//   ws.on('message', function incoming(message) {
+//     console.log('received: %s', message);
+//   });
+// });
 
 // var config = {
 //   domain: 'openshiftapps.com',
