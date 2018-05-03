@@ -51,7 +51,7 @@ app.use(
         throw new Error('Aghh! An error!');
       }),
       _.get('/api/v1/biometric-id/sessions.json', videoAnalisys.getSessions),
-      _.post('/api/v1/biometric-id/save-video', videoAnalisys.saveVideoData,
+      _.post('/api/v1/biometric-id/save-video', videoAnalisys.saveVideoData),
       _.get('*', async (ctx, next) => {
         const html = fs.readFileSync(path.resolve('./public/index.html'));
         ctx.type = 'html';
